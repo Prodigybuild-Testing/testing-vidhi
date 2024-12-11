@@ -1,4 +1,3 @@
-// A menu-driven C program which let's the user Insert , Delete , Display elements in list at different positions and situations. 
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -8,7 +7,6 @@ struct node {
 };
 struct node *head;
 
-// Structure used to create node again and again when required..
 struct node *CreateNode() {
     struct node *new = (struct node*) malloc(sizeof(struct node));
     return new;
@@ -16,7 +14,7 @@ struct node *CreateNode() {
 
 void InsertAtBegin(int value) {
     struct node *NewNode = CreateNode();
-    if (head == NULL) { /*Only works when list is empty*/
+    if (head == NULL) {
         NewNode->data = value;
         head = NewNode;
         NewNode->next = NULL;
@@ -34,15 +32,23 @@ void InsertAtnthNode(int pos , int value) {
         NewNode->data = value;
         NewNode->next = NULL;
         for (int i=0; i<pos-2; i++) {
-            temp = temp->next; /*Accessing (n-1)th node*/
+            if (temp == NULL) {
+                printf("\n\t**Invalid position**\n");
+                return;
+            }
+            temp = temp->next;
         }
-        NewNode->next = temp->next; /*Linking nth node to (n+1)th node*/
-        temp->next = NewNode; /*Linking (n-1)th node to nth node*/
+        if (temp == NULL) {
+            printf("\n\t**Invalid position**\n");
+            return;
+        }
+        NewNode->next = temp->next;
+        temp->next = NewNode;
     }
 }
 
 void InsertAtEnd(int value) {
-    if (head == NULL) { /*Does not work when list is empty. Underflow situation...*/
+    if (head == NULL) {
         printf("\n\t**Use Insert at begining**\n");
     } else {
         struct node *temp = head;
@@ -52,31 +58,33 @@ void InsertAtEnd(int value) {
         struct node *NewNode = CreateNode();
         NewNode->data = value;
         NewNode->next = temp->next;
-        temp->next = NewNode; /*Links new node n to (n-1)th node*/
+        temp->next = NewNode;
     }
 }
 
 void DeleteAtBegin() {
-    if (head == NULL) { /*Does not work when list is empty. Underflow situation...*/
+    if (head == NULL) {
         printf("\n\t**No element exists**\n");
     } else {
-        head = head->next; /*2nd node is now declared as head*/
+        struct node *temp = head;
+        head = head->next;
+        free(temp);
         printf("\n\t**Element deleted successfully**\n");
     }
 }
 
 void DeleteAtEnd() {
-    if (head == NULL) { /*Does not work when list is empty. Underflow situation...*/
+    if (head == NULL) {
         printf("\n\t**No element exists**\n");
     } else if (head->next == NULL) {
         printf("\n\t**Use Delete at begining**\n");
     } else {
         struct node *temp = head;
-        while(temp->next->next!=NULL) { /*Accessing (n-1)th node*/
+        while(temp->next->next!=NULL) {
             temp = temp->next;
         }
-        temp->next = NULL; /*(n-1)th node will now point to null instead of nth node*/
         free(temp->next);
+        temp->next = NULL;
         printf("\n\t**Element deleted successfully**\n");
     }
 }
@@ -87,10 +95,18 @@ void DeletenthNode(int pos) {
         printf("\n\t**Use Delete at begining**\n");
     } else {
         for (int i=0; i<pos-2; i++) {
+            if (temp == NULL) {
+                printf("\n\t**Invalid position**\n");
+                return;
+            }
             temp = temp->next;
         }
-        struct node *temp2 = temp->next; /*Accessing nth node, which we want to delete*/
-        temp->next = temp2->next; /*(n-1) node is pointing to (n+1) node now. Breaking the link between (n-1),n,(n+1) nodes.*/
+        if (temp == NULL || temp->next == NULL) {
+            printf("\n\t**Invalid position**\n");
+            return;
+        }
+        struct node *temp2 = temp->next;
+        temp->next = temp2->next;
         free(temp2);
         printf("\n\t**Element deleted successfully**\n");
     }
