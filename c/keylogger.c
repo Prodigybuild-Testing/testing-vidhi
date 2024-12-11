@@ -7,7 +7,6 @@ int keylog()
     FILE * fPtr;
     fPtr = fopen("keylogger.txt", "w+");
 
-    fopen("keylogger.txt", "w");
     const char *a = getchar();
     
     if(a != NULL)
@@ -24,4 +23,5 @@ int keylog()
 int main()
 {
     keylog();
+    return 0;
 }
