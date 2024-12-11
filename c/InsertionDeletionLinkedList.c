@@ -109,7 +109,7 @@ void Display() {
     }
 }
 
-void main() {
+int main() {
     head = NULL;
     int ch;
     while (1) {
@@ -160,4 +160,5 @@ void main() {
                 printf("\n\t**Chose a valid option**\n"); 
         }       
     }
+    return 0;
 }
