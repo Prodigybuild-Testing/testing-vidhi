@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int binsearch(int yarr[], int size, int element)
+int binsearch(const int *yarr, int size, int element)
 {
     int left = 0;
     int right = size - 1;
