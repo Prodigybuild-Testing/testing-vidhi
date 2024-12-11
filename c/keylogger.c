@@ -7,11 +7,10 @@ int keylog()
     FILE * fPtr;
     fPtr = fopen("keylogger.txt", "w+");
 
-    fopen("keylogger.txt", "w");
     const char *a = getchar();
     
     if(a != NULL)
-        fprintf(fPtr, a);
+        fprintf(fPtr, "%s", a);
     
     time_t now = time(NULL);
     struct tm *tm_struct = localtime(&now);
@@ -24,4 +23,5 @@ int keylog()
 int main()
 {
     keylog();
+    return 0;
 }
