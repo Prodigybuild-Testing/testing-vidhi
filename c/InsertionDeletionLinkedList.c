@@ -8,8 +8,8 @@ struct node {
 struct node *head;
 
 struct node *CreateNode() {
-    struct node *new = (struct node*) malloc(sizeof(struct node));
-    return new;
+    struct node *newNode = (struct node*) malloc(sizeof(struct node));
+    return newNode;
 }
 
 void InsertAtBegin(int value) {
