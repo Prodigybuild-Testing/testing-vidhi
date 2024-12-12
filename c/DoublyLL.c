@@ -14,12 +14,12 @@ struct Node *CreateNode() {
     return newNode;
 }
 
-void Insert(int val) { /*Inserting element at head*/
-    struct Node *newNode = CreateNode(); /*NewNode is created everytime function is called*/
-    newNode->value = val; /*Value assigned to NewNode*/
-    newNode->next = head; /*NewNode's next points to head*/
-    newNode->prev = NULL; /*NewNode's previous points to NULL*/
-    if (head != NULL) { 
+void Insert(int val) {
+    struct Node *newNode = CreateNode();
+    newNode->value = val;
+    newNode->next = head;
+    newNode->prev = NULL;
+    if (head != NULL) {
         head->prev = newNode;
     }
     head = newNode;
@@ -27,7 +27,7 @@ void Insert(int val) { /*Inserting element at head*/
 
 void Display() {
     struct Node *temp = head;
-    printf("\nForward:\n"); /*Printing normally in forward manner*/
+    printf("\nForward:\n");
     while(temp!=NULL) {
         printf("%d ",temp->value);
         temp = temp->next;
@@ -36,11 +36,11 @@ void Display() {
 
 void ReverseDisplay() {
     struct Node *temp = head;
-    while(temp->next!=NULL) { /*Moving to the last node*/
+    while(temp->next!=NULL) {
         temp = temp->next;
     }
 
-    printf("\nBackward:\n"); /*Printing in backward manner*/
+    printf("\nBackward:\n");
     while(temp!=NULL) {
         printf("%d ",temp->value);
         temp = temp->prev;
@@ -57,7 +57,7 @@ int main() {
     for (int i=0; i<n; i++) {
         printf("Enter element: ");
         scanf("%d",&val);
-        Insert(val); /*Inserting value everytime loop executes*/
+        Insert(val);
     }
     Display();
     ReverseDisplay();

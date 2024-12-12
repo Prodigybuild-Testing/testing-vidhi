@@ -1,83 +1,72 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void print_arr(int *ptr, int size)
+void print_arr(const int *ptr, int size)
 {
     putchar('[');
-    while(size--)
+    for (int i = 0; i < size; i++)
     {
-	printf("%d", *ptr++);
-	if(size)
-	    putchar(',');
+        printf("%d", ptr[i]);
+        if (i < size - 1)
+            putchar(',');
     }
     printf("]\n");
 }
 
 void swap(int *a, int *b)
 {
-    int tmp;
-
-    tmp = *a;
+    int tmp = *a;
     *a = *b;
     *b = tmp;
 }
 
-int *find_min(int *ptr, int size)
+int *find_min(const int *ptr, int size)
 {
-    int *min;
-
-    min = ptr;
-    while(size--)
+    int *min = (int *)ptr;
+    for (int i = 1; i < size; i++)
     {
-	if(*ptr < *min)
-	    min = ptr;
-	ptr++;
+        if (ptr[i] < *min)
+            min = (int *)(ptr + i);
     }
-    return (min);
+    return min;
 }
 
 void selection_sort(int *ptr, int size)
 {
-    int *min;
-
-    while(--size)
+    for (int i = 0; i < size - 1; i++)
     {
-	if((min = find_min(ptr + 1, size)))
-	{
-	    if(*ptr > *min)
-		swap(ptr, min);
-	}
-	ptr++;
+        int *min = find_min(ptr + i, size - i);
+        if (*min < ptr[i])
+            swap(min, ptr + i);
     }
 }
 
-void fill(char **av, int *ptr, int size)
+void fill(const char **av, int *ptr, int size)
 {
-    int i;
-
-    i = 2;
-    while(av[i] && size--)
-	*ptr++ = atoi(av[i++]); 
+    for (int i = 0; i < size; i++)
+    {
+        ptr[i] = atoi(av[i]);
+    }
 }
 
 int main(int argc, char *argv[])
 {
-    if(argc < 3)
+    if (argc < 3)
     {
-	puts("Usage: ./your-executable-name [array size] [array]");
-	puts("Example: ./your-executable-name 3 2 1 0");
-	return EXIT_FAILURE;
+        puts("Usage: ./your-executable-name [array size] [array]");
+        puts("Example: ./your-executable-name 3 2 1 0");
+        return EXIT_FAILURE;
     }
     int size = atoi(argv[1]);
-    if(!size)
+    if (!size)
     {
-	puts("Error: size of array can't be 0");
-	return EXIT_FAILURE;
+        puts("Error: size of array can't be 0");
+        return EXIT_FAILURE;
     }
     int *arr = (int *)malloc(size * sizeof(int));
-    if(!arr)
-	return EXIT_FAILURE;
-    fill(argv, arr, size);
+    if (!arr)
+        return EXIT_FAILURE;
+    fill((const char **)argv + 2, arr, size);
 
     printf("Before sorting: ");
     print_arr(arr, size);
