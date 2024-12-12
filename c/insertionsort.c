@@ -16,6 +16,10 @@ int main()
         {
             sorted[a] = unsorted[a];
         }
+        else
+        {
+            sorted[a] = unsorted[b];
+        }
     } while(sizeof(sorted) != sizeof(unsorted));
     
     return 0;
