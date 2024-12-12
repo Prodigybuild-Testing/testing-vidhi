@@ -4,7 +4,7 @@
 
 int linsearch(const char **yarr, const char *val)
 {
-    for(int i = 0; i < sizeof(yarr); i++)
+    for(int i = 0; i < sizeof(yarr) / sizeof(yarr[0]); i++)
     {
         if(strcmp(yarr[i], val) == 0)
         {
