@@ -17,9 +17,11 @@ int keylog()
     localtime_r(&now, &tm_struct);
     int hour = tm_struct.tm_hour;
     
-    if(hour == 24)
-        fclose(fPtr);
-    else if (!fPtr) {
+    if(hour == 24) {
+        if (fPtr) {
+            fclose(fPtr);
+        }
+    } else if (!fPtr) {
         printf("Could not open file!\n");
         return 1;
     }
