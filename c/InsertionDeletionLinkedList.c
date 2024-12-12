@@ -20,6 +20,7 @@ void InsertAtBegin(int value) {
         NewNode->next = NULL;
     } else {
         printf("\n\t**Element already exists at this position**\n");
+        free(NewNode);
     }
 }
 
@@ -34,12 +35,14 @@ void InsertAtnthNode(int pos , int value) {
         for (int i=0; i<pos-2; i++) {
             if (temp == NULL) {
                 printf("\n\t**Invalid position**\n");
+                free(NewNode);
                 return;
             }
             temp = temp->next;
         }
         if (temp == NULL) {
             printf("\n\t**Invalid position**\n");
+            free(NewNode);
             return;
         }
         NewNode->next = temp->next;
