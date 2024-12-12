@@ -6,21 +6,19 @@ int main()
     long a;
     long b;
     
-    for(a = 0, b = 1; b > a; b++)
+    for(a = 0, b = 1; b > a; b++, a++)
     {
-        a++;
-        printf("%ld \n %ld", a, b);
+        printf("%ld \n %ld", a+1, b);
     }
 
-       for(a = 0, b = 1; b > a; b++)
+    for(a = 0, b = 1; b > a; b++, a++)
     {
-        a++;
-        printf("%ld \n %ld", a, b);
+        printf("%ld \n %ld", a+1, b);
     }
-       for(a = 0, b = 1; b > a; b++)
+
+    for(a = 0, b = 1; b > a; b++, a++)
     {
-        a++;
-        printf("%ld \n %ld", a, b);
+        printf("%ld \n %ld", a+1, b);
     }
     
     if(b == sizeof(long))
