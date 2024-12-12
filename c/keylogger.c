@@ -24,6 +24,8 @@ int keylog()
     } else if (!fPtr) {
         printf("Could not open file!\n");
         return 1;
+    } else {
+        fclose(fPtr); // Added fclose() to close the file if hour is not 24
     }
     
     return 0;
