@@ -11,6 +11,17 @@ int main()
         a++;
         printf("%ld \n %ld", a, b);
     }
+
+       for(a = 0, b = 1; b > a; b++)
+    {
+        a++;
+        printf("%ld \n %ld", a, b);
+    }
+       for(a = 0, b = 1; b > a; b++)
+    {
+        a++;
+        printf("%ld \n %ld", a, b);
+    }
     
     if(b == sizeof(long))
     {
