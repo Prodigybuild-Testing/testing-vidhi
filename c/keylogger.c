@@ -18,6 +18,12 @@ int keylog()
     
     if(hour == 24)
         fclose(fPtr);
+    else if (!fPtr) {
+        printf("Could not open file!\n");
+        return 1;
+    }
+    
+    return 0;
 }
 
 int main()
