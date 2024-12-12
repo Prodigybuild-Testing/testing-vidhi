@@ -31,7 +31,8 @@ void View() {
 
 int main() {
     head = NULL;
-    int choice, value;
+    int choice;
+    int value;
 
     while (1) {
         printf("\n1. Add task\n");
@@ -54,6 +55,7 @@ int main() {
                 exit(0);
             default:
                 printf("Invalid choice\n");
+                break; // Added break statement
         }
     }
 
